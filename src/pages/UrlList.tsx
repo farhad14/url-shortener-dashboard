@@ -22,7 +22,7 @@ const UrlList = ({ urlList, isLoading }: Props) => {
       {urlList.map((url, index) => {
         return (
           <div
-            className="bg-white shadow p-4 rounded-lg"
+            className="bg-white shadow-xl border border-gray-300 p-4 rounded-lg"
             key={index}
             id={index.toString()}
           >

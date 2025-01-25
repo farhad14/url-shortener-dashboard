@@ -55,7 +55,7 @@ const Shortener = (props: Props) => {
   }
 
   return (
-    <div className="shortener rounded-lg bg-white shadow p-4">
+    <div className="shortener rounded-lg bg-white shadow-xl border border-gray-300 p-4">
       <form className="">
         <div className="flex">
           <input
