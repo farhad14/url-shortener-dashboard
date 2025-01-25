@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { AiOutlineLoading } from "react-icons/ai";
 import { Url } from "./Home";
 
@@ -17,11 +18,11 @@ const UrlList = ({ urlList, isLoading }: Props) => {
     );
 
   return (
-    <div className="px-5">
+    <div className="space-y-4">
       {urlList.map((url, index) => {
         return (
           <div
-            className="bg-gray-50 shadow mb-3 border border-gray-200 rounded-lg p-2"
+            className="bg-white shadow p-4 rounded-lg"
             key={index}
             id={index.toString()}
           >
@@ -30,8 +31,8 @@ const UrlList = ({ urlList, isLoading }: Props) => {
               <div className="flex justify-between mb-2">
                 <h2 className="text-lg font-semibold">{url.title}</h2>
                 <div className="flex items-center justify-between">
-                  <div className="whitespace-nowrap px-2 py-1 bg-gray-500/20 rounded-full">
-                    <span className="text-sm">clicks:</span> {url.clicks.length}
+                  <div className="whitespace-nowrap px-2 py-[2px] bg-gray-500/20 rounded-full text-sm">
+                    clicks: {url.clicks.length}
                   </div>
                 </div>
               </div>
@@ -40,13 +41,14 @@ const UrlList = ({ urlList, isLoading }: Props) => {
 
             {/* Links */}
             <div className="links">
-              <div className="bg-lime-200 rounded-full flex overflow-hidden">
+              <div className="bg-lime-50 rounded-full flex overflow-hidden">
                 <button
                   type="button"
-                  className="bg-lime-700 text-white px-2 font-semibold"
-                  onClick={() =>
-                    navigator.clipboard.writeText(`${baseUrl}/${url.urlId}`)
-                  }
+                  className="bg-lime-700 text-white px-2 font-semibold cursor-pointer"
+                  onClick={() => {
+                    navigator.clipboard.writeText(`${baseUrl}/${url.urlId}`);
+                    toast.success("Copied");
+                  }}
                 >
                   Copy
                 </button>
@@ -56,9 +58,12 @@ const UrlList = ({ urlList, isLoading }: Props) => {
                   </a>
                 </div>
               </div>
-              <a href={url.originalUrl} className="full-url">
-                {" "}
-                {url.originalUrl.slice(0, 100)}
+              <a
+                href={url.originalUrl}
+                className="full-url truncate text-sm text-gray-600"
+              >
+                {decodeURI(url.originalUrl).slice(0, 80)}{" "}
+                {decodeURI(url.originalUrl).length > 80 ? "..." : ""}
               </a>
             </div>
           </div>

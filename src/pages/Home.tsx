@@ -53,11 +53,12 @@ export default function Main() {
     <main>
       <div className="p-5 max-w-[800px] mx-auto">
         <Shortener onAdd={refetch} />
+        <br />
         <UrlList urlList={_urls} isLoading={isLoading} />
         {hasNextPage && (
           <div className="flex justify-center py-5">
             <button
-              className="btn"
+              className="cursor-pointer"
               onClick={() => fetchNextPage()}
               disabled={isFetchingNextPage}
             >
